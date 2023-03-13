@@ -14,6 +14,11 @@ const employeeschema = Schema({
         type: String,
         required: true
     },
+    salary:{
+        type: Number,
+        required: true
+        
+    },
     department :{
         type: Schema.Types.ObjectId,
         ref:'department'

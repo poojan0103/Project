@@ -1,0 +1,16 @@
+<form #Employeeform="ngForm" (ngSubmit)= "addEmployee(Employeeform.value)">
+    Name: <input type="text" ngModel name="name" placeholder="Enter Name">
+     <br> <br>
+     Email:<input type="text" ngModel name="email" placeholder="Enter Email">
+     <br> <br>
+     Paasword: <input type="text" ngModel name="password" placeholder="Enter Password">
+     <br> <br>
+     Salary: <input type="text" ngModel name="salary" placeholder="Enter Salary">
+     <br> <br>
+     
+    Department:<input type="text" ngModel name="department" placeholder="EnterId">
+     <br> <br>
+     <button>Add Employee</button>
+     
+ 
+ </form>

@@ -11,7 +11,7 @@ app.listen(PORT, () => {
 
 
 });
-app.use(cors)
+app.use(cors())
 app.use(express.json())
 app.use('/emp',employeeRoutes)
 app.use('/dep',depatmentRoutes)

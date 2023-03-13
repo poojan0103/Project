@@ -18,3 +18,21 @@ exports.adddepartment = (req,res)=>{
         }
     })
 }
+
+exports.getDepartment = (req,res)=>{
+    departmentSchema.find().exec((err,data)=>{
+        if(err){
+            res.status(501).json({
+                message: "error",
+                Error:err
+            })
+
+        }
+        else{
+            res.status(200).json({
+                message : "department Fetched",
+                data:data
+            })
+        }
+    })
+}
