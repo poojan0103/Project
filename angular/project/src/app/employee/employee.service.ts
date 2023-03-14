@@ -13,4 +13,14 @@ export class EmployeeService {
   public listEmployee():Observable<any>{
     return this.http.get('http://localhost:9999/emp/get')
   }
+  public listEmployeebysalary():Observable<any>{
+    return this.http.get('http://localhost:9999/emp/salary')
+  }
+  public listEmployeebysalarys():Observable<any>{
+    return this.http.get('http://localhost:9999/emp/salarys')
+  }
+  public marketing():Observable<any>{
+    return this.http.get('http://localhost:9999/emp/getbyid/640ee39098aaddef571f40a8')
+  }
+  
 }

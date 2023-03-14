@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const departmentSchema = Schema({
 
-    name:{
+    department:{
         type:String,
         required:true
 

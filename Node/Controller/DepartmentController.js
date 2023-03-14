@@ -1,38 +1,39 @@
 const departmentSchema = require('../Model/DepartmentSchema')
 
-exports.adddepartment = (req,res)=>{
+exports.adddepartment = (req, res) => {
     var department = new departmentSchema(req.body);
-    department.save((err,data)=>{
+    department.save((err, data) => {
 
-        if(err){
+        if (err) {
             res.status(501).json({
                 message: "error",
             })
 
         }
-        else{
+        else {
             res.status(200).json({
-                message : "department added",
-                data:data
+                message: "department added",
+                data: data
             })
         }
     })
 }
 
-exports.getDepartment = (req,res)=>{
-    departmentSchema.find().exec((err,data)=>{
-        if(err){
+exports.getDepartment = (req, res) => {
+    departmentSchema.find().exec((err, data) => {
+        if (err) {
             res.status(501).json({
                 message: "error",
-                Error:err
+                Error: err
             })
 
         }
-        else{
+        else {
             res.status(200).json({
-                message : "department Fetched",
-                data:data
+                message: "department Fetched",
+                data: data
             })
         }
     })
 }
+
