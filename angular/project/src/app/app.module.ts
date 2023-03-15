@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 import  {HttpClientModule} from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import{ LazyLoadEvent } from 'primeng/api'
+import {TableModule} from 'primeng/table'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AddemployeeComponent } from './employee/addemployee/addemployee.component';
@@ -21,7 +23,10 @@ import { ListemployeeComponent } from './employee/listemployee/listemployee.comp
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    TableModule,
+  
+
   ],
   providers: [],
   bootstrap: [AppComponent]

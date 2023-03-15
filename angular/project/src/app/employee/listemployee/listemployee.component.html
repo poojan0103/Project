@@ -1,17 +1,18 @@
-<h1>ALL EMPLOYEE</h1>
+<h1>ALL EMPLOYEE  </h1>
 <label for="employee" >Choose a Range: </label>
-<select name="employee" (change)="onoptionSelected(employees.value)" #employees>
+<select name="employee" (change)="onoptionSelected(employees.value,dept)" #employees>
   <option value="1">select range</option>
-  <option value="2">0-20000</option>
-  <option value="3">21000-30000</option>
+  <option value="0-20000">0-20000</option>
+  <option value="21000-30000">21000-30000</option>
 </select>
 <br><br>
 <label for="employee" >Choose a department: </label>
-<select name="department" (change)="departments(department.value)" #department>
-  <option value="1">select department</option>
-  <option value="2">Marketing</option>
-  
+<div>
+<select (change)="departments($event)">
+  <option>Select a department</option>
+  <option *ngFor="let item of departmentlist" [value]="item.department">{{item.department}}</option>
 </select>
+</div>
 <!-- <div> -->
 <!--  
   <select id="department-select" [(ngModel)]="selectedDepartment">
@@ -21,7 +22,8 @@
 </div> -->
 <br><br>
 
-<table class="table table-bordered">
+
+ <table class="table table-bordered">
 
     <thead>
       <tr >
@@ -41,4 +43,35 @@
         <td>{{e.password}}</td>
         <td> {{e.salary}}</td>
         <td>{{e.department.department}}</td>   
-    </tr>
+    </tr> 
+<!-- 
+    <p-table [value]="employee">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>_id</th>
+          <th>name</th>
+          <th>email</th>
+        </tr>
+
+         -->
+        <!-- <tr>
+          <th>
+            <input type="text" pInputText size="6" (input)="employee.filter($event.target, 'id', 'equals')" placeholder="Search ID">
+          </th>
+          <th>
+            <input type="text" pInputText (input)="employee.filter($event.target, 'name', 'contains')" placeholder="Search Name">
+          </th>
+          <th>
+            <input type="text" pInputText (input)="employee.filter($event.target, 'email', 'contains')" placeholder="Search Email">
+          </th>
+        </tr>  -->
+      <!-- </ng-template>
+      <ng-template pTemplate="body" let-e>
+        <tr>
+          <td>{{e._id}}</td>
+          <td>{{e.name}}</td>
+          <td>{{e.email}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+     -->

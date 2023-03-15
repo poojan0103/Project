@@ -1,6 +1,6 @@
 const employeeSchema = require('../Model/EmployeeSchema');
 
-exports.addemployee = (req, res) => {
+const addemployee = (req, res) => {
     var product = new employeeSchema(req.body);
     console.log(product);
     product.save((err, data) => {
@@ -21,7 +21,7 @@ exports.addemployee = (req, res) => {
 }
 
 
-exports.getEmployee = (req, res) => {
+const getEmployee = (req, res) => {
     employeeSchema.find().populate('department').exec((err, data) => {
         if (err) {
             res.status(501).json({
@@ -38,48 +38,56 @@ exports.getEmployee = (req, res) => {
         }
     })
 }
-exports.getbysalary = (req, res) => {
-    const minSalary = 0;
-    const maxSalary = 20000;
-    employeeSchema.find({ salary: { $gte: minSalary, $lte: maxSalary }  }).populate('department').exec((err, data) => {
-        if (err) {
-            res.status(501).json({
-                message: "error",
-                Error: err
-            })
+const getbysalary = (req,res)=>{
+    console.log(req.body);
+    
 
-        }
-        else {
-            res.status(200).json({
-                message: "employee Fetched",
-                data: data
-            })
-
-        }
-    })
 }
-exports.getbysalarys = (req, res) => {
-    const minSalary = 21000;
-    const maxSalary = 30000;
-    employeeSchema.find({ salary: { $gte: minSalary, $lte: maxSalary } }).populate('department').exec((err, data) => {
-        if (err) {
-            res.status(501).json({
-                message: "error",
-                Error: err
-            })
+// const getbysalary =  (req, res) => {
+    // console.log(req.body);
 
-        }
-        else {
-            res.status(200).json({
-                message: "employee Fetched",
-                data: data
-            })
+    
+    // const minSalary = 0;
+    // const maxSalary = 20000;
+    // employeeSchema.find({ salary: { $gte: minSalary, $lte: maxSalary }  }).populate('department').exec((err, data) => {
+    //     if (err) {
+    //         res.status(501).json({
+    //             message: "error",
+    //             Error: err
+    //         })
 
-        }
-    })
-}
+    //     }
+    //     else {
+    //         res.status(200).json({
+    //             message: "employee Fetched",
+    //             data: data
+    //         })
 
-exports.getEmployeeByID = (req, res) => {
+    //     }
+    // })
+// }
+// const getbysalarys = (req, res) => {
+//     const minSalary = 21000;
+//     const maxSalary = 30000;
+//     employeeSchema.find({ salary: { $gte: minSalary, $lte: maxSalary } }).populate({path:'department', match:{department:"Marketing"}}).exec((err, data) => {
+//         if (err) {
+//             res.status(501).json({
+//                 message: "error",
+//                 Error: err
+//             })
+
+//         }
+//         else {
+//             res.status(200).json({
+//                 message: "employee Fetched",
+//                 data: data
+//             })
+
+//         }
+//     })
+// }
+
+const getEmployeeByID = (req, res) => {
     const department = req.params.id;
     // console.log(typeof (department));
     employeeSchema.find({ department: department }).populate('department').exec((err, data) => {
@@ -100,3 +108,4 @@ exports.getEmployeeByID = (req, res) => {
         }
     })
 }
+module.exports ={addemployee,getEmployee,getEmployeeByID,getbysalary}
