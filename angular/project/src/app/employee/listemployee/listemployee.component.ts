@@ -70,6 +70,8 @@ export class ListemployeeComponent  implements OnInit{
     let srange = value.split('-');
   
   this.service.listEmployeebysalary(srange[0],srange[1],department).subscribe(data=>{
+
+
     this.employee = data.data 
    })
 //     }else if(value=="3"){

@@ -1,7 +1,7 @@
 <h1>ALL EMPLOYEE  </h1>
 <label for="employee" >Choose a Range: </label>
 <select name="employee" (change)="onoptionSelected(employees.value,dept)" #employees>
-  <option value="1">select range</option>
+  <option value="">select range</option>
   <option value="0-20000">0-20000</option>
   <option value="21000-30000">21000-30000</option>
 </select>
@@ -9,8 +9,8 @@
 <label for="employee" >Choose a department: </label>
 <div>
 <select (change)="departments($event)">
-  <option>Select a department</option>
-  <option *ngFor="let item of departmentlist" [value]="item.department">{{item.department}}</option>
+  <option value="">Select a department</option>
+  <option *ngFor="let item of departmentlist" [value]="item._id">{{item.department}}</option>
 </select>
 </div>
 <!-- <div> -->

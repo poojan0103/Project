@@ -5,22 +5,27 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const employeeRoutes = require("./Routes/EmployeeRoutes")
 const depatmentRoutes = require("./Routes/DepartmentRoutes")
+const eduroutes = require("./Routes/EducationRoutes")
 const PORT = 9999
 app.listen(PORT, () => {
   console.log('server is running on port', PORT)
 
 
 });
+/*filter api for salary and department*/
+
 app.use(cors())
 app.use(express.json())
 app.use('/emp',employeeRoutes)
 app.use('/dep',depatmentRoutes)
+app.use('/edu',eduroutes)
 // app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(bodyParser.json());
 
 // app.post('/getfiltered',(req,res)=>{
 //   console.log(req.body);
 // })
+
 // app.use('/emp',employeeroutes)
 //connect with database
 mongoose.connect('mongodb://127.0.0.1:27017/node', {
