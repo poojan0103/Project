@@ -1,6 +1,6 @@
 <h1>ALL EMPLOYEE  </h1>
 <label for="employee" >Choose a Range: </label>
-<select name="employee" (change)="onoptionSelected(employees.value,dept)" #employees>
+<select name="employee" (change)="onoptionSelected(employees.value,dept,education)" #employees>
   <option value="">select range</option>
   <option value="0-20000">0-20000</option>
   <option value="21000-30000">21000-30000</option>
@@ -12,6 +12,14 @@
   <option value="">Select a department</option>
   <option *ngFor="let item of departmentlist" [value]="item._id">{{item.department}}</option>
 </select>
+
+</div>
+<label for="employee">Chose a education</label>
+<div>
+<select (change)="educations($event)">
+  <option value="">select education</option>
+  <option *ngFor="let s of alleducation"[value]="s._id">{{s.degree}}</option>
+  </select>
 </div>
 <!-- <div> -->
 <!--  
@@ -33,6 +41,8 @@
         <th scope="col">password</th>
         <th scope="col">salary</th>
         <th scope="col">department</th>
+        <th scope="col">education</th>
+        
     
       </tr>
     </thead>
@@ -42,12 +52,14 @@
         <td>{{e.email}}</td>
         <td>{{e.password}}</td>
         <td> {{e.salary}}</td>
-        <td>{{e.department.department}}</td>   
+        <td>{{e.department.department}}</td>
+        <td *ngFor="let x of e.education;index as j">
+          <span>{{x.degree}}</span>
+        </td>
     </tr> 
 <!-- 
     <p-table [value]="employee">
       <ng-template pTemplate="header">
-        <tr>
           <th>_id</th>
           <th>name</th>
           <th>email</th>

@@ -14,15 +14,19 @@ const addeducation = (req,res)=>{
     })
 }
 const getEducation = (req,res)=>{
-    educationschema.find((err,data)=>{
+    educationschema.find().exec((err,data)=>{
         if(err){
-            res.send(err)
-            console.log(err)
+            res.status(501).json({
+                message: "error",
+                Error: err
+            })
         }
         else{
-            res.send(data)
- //           console
-            console.log(data)
+            res.status(200).json({
+                message: "employee Fetched",
+                data : data
+        }
+        )
         }
     })
 }

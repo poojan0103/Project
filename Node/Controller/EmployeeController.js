@@ -22,7 +22,7 @@ const addemployee = (req, res) => {
 
 
 const getEmployee = (req, res) => {
-    employeeSchema.find().populate('department').exec((err, data) => {
+    employeeSchema.find().populate('department').populate('education').exec((err, data) => {
         if (err) {
             res.status(501).json({
                 message: "error",
@@ -41,9 +41,9 @@ const getEmployee = (req, res) => {
 const getbysalary = (req, res) => {
     let a = req.body;
     console.log(a);
-    if((a.minSalary === '' || a.minSalary === undefined) && (a.department === undefined || a.department === ''))
+    if((a.minSalary === '' || a.minSalary === undefined) && (a.department === undefined || a.department === '') && (a.education === '' || a.education === undefined))
     {
-        employeeSchema.find().populate('department').exec((err, data) => {
+        employeeSchema.find().populate('department').populate('education').exec((err, data) => {
             if (err) {
                 res.status(501).json({
                     message: "error",
@@ -59,8 +59,8 @@ const getbysalary = (req, res) => {
             }
         })
 }  
-    else if (a.minSalary === '') {
-        employeeSchema.find({ department: a.department }).populate('department').exec((err, data) => {
+    else if (a.minSalary === ''&& a.education === ''|| a.education === undefined) {
+        employeeSchema.find({ department: a.department }).populate('department').populate('education').exec((err, data) => {
             if (err) {
                 res.status(501).json({
                     message: "error",
@@ -75,27 +75,45 @@ const getbysalary = (req, res) => {
             }
         })
     }
-    else if (a.department === '' || a.department === undefined) {
-        employeeSchema.find({ salary: { $gte: a.minSalary, $lte: a.maxSalary } }).populate('department').exec((err, data) => {
-            if (err) {
-                res.status(501).json({
-                    message: "error",
-                    Error: err
-                })
-            }
-            else {
-                res.status(201).json({
-                    message: "employee fetched",
-                    data: data
-                })
-            }
-        })
-    }
-    
+    // else if(a.department === '' || a.department === undefined && a.minSalary === ''){
+    //     employeeSchema.find({ education : a.education}).populate('department').populate('education').exec((err, data) => {
+    //         if (err) {
+    //             res.status(501).json({
+    //                 message: "error",
+    //                 Error: err
+    //             })
+    //         }
+    //         else {
+    //             res.status(201).json({
+    //                 message: "employee fetched",
+    //                 data: data
+    //             })
+    //         }
+    //     })
+    // }
+    // else if ((a.department === '' || a.department === undefined) ) {
+    //     employeeSchema.find({ salary: { $gte: a.minSalary, $lte: a.maxSalary } }).populate('department').populate('education').exec((err, data) => {
+    //         if (err) {
+    //             res.status(501).json({
+    //                 message: "error",
+    //                 Error: err
+    //             })
+    //         }
+    //         else {
+    //             res.status(201).json({
+    //                 message: "employee fetched",
+    //                 data: data
+    //             }) 
+    //         }
+    //     })
+    // }
+   // salary: { $gte: a.minSalary, $lte: a.maxSalary }, department: a.department
+//    const query = {};
+//    query['salary'] = {}
     else {
         employeeSchema.find({
             department: a.department, salary: {$gte: a.minSalary, $lte: a. maxSalary}
-        }).populate('department').exec((err, data) => {
+        }).populate('department').populate('education').exec((err, data) => {
             if (err) {
                 res.status(501).json({
                     message: "error",

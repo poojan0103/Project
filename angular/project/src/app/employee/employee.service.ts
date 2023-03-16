@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import { Observable } from 'rxjs'
+import { Observable, ObservableLike } from 'rxjs'
 @Injectable({
   providedIn: 'root'
 })
@@ -13,17 +13,21 @@ export class EmployeeService {
   public listEmployee(): Observable<any> {
     return this.http.get('http://localhost:9999/emp/get')
   }
-  public listEmployeebysalary(minSalary: string, maxSalary: string, dept: string): Observable<any> {
+  public listEmployeebysalary(minSalary: string, maxSalary: string, dept: string,eduction : any): Observable<any> {
     this.result = {
       minSalary,
       maxSalary,
-      department: dept
+      department: dept,
+      education : eduction
     }
     console.log(this.result);
     // console.log('http://localhost:9999/emp/salary',this.result);
 
 
     return this.http.post('http://localhost:9999/emp/salary',this.result)
+  }
+  public education():Observable<any>{
+    return this.http.get(' http://localhost:9999/edu/get')
   }
   // public listEmployeebysalarys():Observable<any>{
   //   return this.http.get('http://localhost:9999/emp/salarys')

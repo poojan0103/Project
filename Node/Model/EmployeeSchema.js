@@ -22,7 +22,12 @@ const employeeschema = Schema({
     department :{
         type: Schema.Types.ObjectId,
         ref:'department'
-    }
+    },
+    education : [{
+        type: Schema.Types.ObjectId,
+        ref:'education'
+    }],
+    
 
 
 })
