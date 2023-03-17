@@ -21,17 +21,15 @@ export class EmployeeService {
       education : eduction
     }
     console.log(this.result);
-    // console.log('http://localhost:9999/emp/salary',this.result);
+    
 
-
+      
     return this.http.post('http://localhost:9999/emp/salary',this.result)
   }
   public education():Observable<any>{
     return this.http.get(' http://localhost:9999/edu/get')
   }
-  // public listEmployeebysalarys():Observable<any>{
-  //   return this.http.get('http://localhost:9999/emp/salarys')
-  // }
+  
   public alldepartment(): Observable<any> {
     return this.http.get('http://localhost:9999/dep/get')
   }
